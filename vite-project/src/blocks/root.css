@@ -1,0 +1,20 @@
+:root {
+  --color-fondo-principal: #000;
+  --color-secundario-textos-primarios-bordes: #ffff;
+  --color-textos-secundarios: #545454;
+}
+
+/* body,
+main,
+header,
+div,
+img,
+h2,
+button,
+p,
+form,
+label,
+section,
+footer {
+  border: 1px solid red;
+} */
