@@ -1,23 +1,23 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 1280px;
-  height: 100%;
-  background-color: var(--color-fondo-principal);
-  grid-column-start: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1280px;
+    height: 100%;
+    background-color: var(--color-fondo-principal);
+    grid-column-start: 2;
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
-  .main {
-    align-items: center;
-    width: 100%;
-  }
+    .main {
+        align-items: center;
+        width: 100%;
+    }
 }
 @media screen and (min-width: 769px) and (max-width: 909px) {
-  .main {
-    display: flex;
-    width: 100%;
-    grid-template-columns: 1fr 1fr;
-  }
+    .main {
+        display: flex;
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+    }
 }
