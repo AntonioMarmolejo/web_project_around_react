@@ -1,4 +1,4 @@
-export default function AvatarPopup() {
+export default function EditAvatar() {
     return (
         <form className="form" noValidate>
             <h2 className="form__title"></h2>

@@ -1,4 +1,4 @@
-export default function EditPopup() {
+export default function EditProfile() {
     return (
         <form className="form" noValidate>
             <label className="form__label" htmlFor="user-name">

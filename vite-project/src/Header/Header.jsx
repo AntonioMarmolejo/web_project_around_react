@@ -1,9 +1,7 @@
 import React from "react";
-
 import logo from "../images/Vector-logo.svg";
 import line from "../images/Line.png";
-
-function Header() {
+export default function Header() {
     return (
         <header className="header">
             <img className="header__logo" src={logo} alt="Logo del Proyecto" />
@@ -11,5 +9,3 @@ function Header() {
         </header>
     );
 }
-
-export default Header;

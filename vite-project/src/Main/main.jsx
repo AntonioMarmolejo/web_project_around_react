@@ -6,14 +6,20 @@ import imagenSuma from "../images/Vector-suma-agregar.svg";
 import iconClose from "../images/Close-Icon.svg";
 import reciclaje from "../images/Group__reciclaje.svg";
 import corazon from "../images/Vector-corazon.svg";
-import Popup from "../images/Popup";
-import EditPopup from "./Form/EditPopup/EditPopup";
-import DeleteCard from "./Form/DeleteCardPopup/DeleteCardPopup";
-import AvatarPopup from "./Form/AvatarPopup/AvatarPopup";
+import Popup from "./componets/Popup/Popup";
+import EditProfile from "./componets/Form/EditProfile/EditProfile";
+import DeleteCard from "./componets/Form/DeleteCard/DeleteCard";
+import Avatar from "./componets/Form/EditAvatar/EditAvatar";
 import { useState } from "react";
+import NewCard from "./componets/Form/NewCard/NewCard";
+
 export default function Main() {
     const [popup, setPopup] = useState(null);
-    const newCardPopup = { title, ""};
+    const newCardPopup = { title: "Nuevo Lugar", children: <NewCard /> };
+
+    function handleOpenPopup(popup) {
+        setPopup(popup);
+    }
 
     return (
         <>
@@ -37,21 +43,25 @@ export default function Main() {
 
                 <button className="buttons__item buttons__item_index_add-card">
                     <img src={imagenSuma} alt="ícono de mas para agregar tarjetas" />
+                    onClick = {() => handleOpenPopup(newCardPopup)}
                 </button>
 
                 <div className="buttons__modal"></div>
             </div>
 
+            <Popup title={"Nuevo Lugar"}>
+                <NewCard />
+            </Popup>
             <Popup title={"Editar perfil"}>
-                <EditPopup />
+                <EditProfile />
             </Popup>
 
-            <Popup title={"Alerta"}>
+            <Popup title={"Estas Seguro...?"}>
                 <DeleteCard />
             </Popup>
 
             <Popup title={"Cambiar foto de perfil"}>
-                <AvatarPopup />
+                <Avatar />
             </Popup>
 
             <div className="popup popup_content-image">

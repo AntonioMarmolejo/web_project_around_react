@@ -1,4 +1,4 @@
-export default function DeleteCardPopup() {
+export default function DeleteCard() {
     return (
         <form className="form" noValidate>
             <h2 className="form__title form__title-delete">¿estás seguro...?</h2>
