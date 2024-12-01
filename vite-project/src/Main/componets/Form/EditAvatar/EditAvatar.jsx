@@ -1,7 +1,7 @@
 export default function EditAvatar() {
     return (
         <form className="form" noValidate>
-            <h2 className="form__title"></h2>
+            <h2 className="form__title">Editar Avatar</h2>
 
             <label className="form__label" htmlFor="avatar-input">
                 <input type="url" className="form__input" id="avatar-input" name="avatar" placeholder="Url de la nueva foto" defaultValue="" minLength="2" maxLength="100" required />

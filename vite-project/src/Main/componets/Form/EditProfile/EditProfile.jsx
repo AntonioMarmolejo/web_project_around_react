@@ -1,6 +1,8 @@
 export default function EditProfile() {
     return (
         <form className="form" noValidate>
+            <h2 className="form__title">Editar Perfil</h2>
+
             <label className="form__label" htmlFor="user-name">
                 <input type="text" className="form__input" id="user-name" name="name" placeholder="Nuevo usuario" defaultValue="" minLength="2" maxLength="40" required />
                 <span className="form__error form__error_type"></span>

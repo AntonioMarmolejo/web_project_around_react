@@ -24,8 +24,8 @@
 }
 
 .buttons__edit {
-    width: 120px;
-    height: 120px;
+    width: 117px;
+    height: 117px;
     border-radius: 100%;
     position: absolute;
     z-index: 1;
@@ -43,8 +43,8 @@
 .buttom__edit_pencil {
     width: 30px;
     height: 30px;
-    margin-top: 44px;
-    margin-left: 44px;
+    margin-top: 2px;
+    margin-left: 1px;
 }
 
 .buttons__intro {

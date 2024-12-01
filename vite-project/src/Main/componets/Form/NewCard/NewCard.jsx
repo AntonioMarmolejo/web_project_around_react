@@ -1,7 +1,7 @@
 export default function NewCard() {
     return (
         <form className="form" novalidate>
-            <h2 className="form__title">Nuvo Lugar</h2>
+            <h2 className="form__title">Nuevo Lugar</h2>
 
             <label className="form__label" for="place-input">
                 <input type="text" className="form__input" id="place-input" name="newplace" placeholder="Nombre del Lugar" value="" minlength="2" maxlength="30" required />
