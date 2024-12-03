@@ -1,4 +1,5 @@
-.cards {    display: grid;
+.cards {
+    display: grid;
     grid-template-columns: 283px 283px 283px;
     grid-template-rows: 1fr 1fr;
     width: auto;
@@ -7,6 +8,7 @@
     margin-right: auto;
     grid-column-gap: 17px;
     grid-row-gap: 20px;
+    border: 1px solid red;
 }
 
 .cards__element {
@@ -17,6 +19,7 @@
     flex-direction: column;
     position: relative;
     cursor: pointer;
+    border: 1px solid red;
 }
 
 .cards__element_trast {
@@ -81,8 +84,7 @@
 
 .cards__like_active {
     opacity: 1;
-    background: url(https://practicum-content.s3.us-west-1.amazonaws.com/web-code/dom/moved_heart-filled.svg)
-        center no-repeat;
+    background: url(https://practicum-content.s3.us-west-1.amazonaws.com/web-code/dom/moved_heart-filled.svg) center no-repeat;
 }
 .cards__element_like {
     display: flex;
@@ -93,6 +95,10 @@
 .countlike {
     margin-bottom: 0;
     margin-top: 5px;
+}
+
+.cards__list {
+    border: 1px solid red;
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
