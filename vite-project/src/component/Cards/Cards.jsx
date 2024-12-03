@@ -1,5 +1,5 @@
-import reciclaje from "../../../images/Group__reciclaje.svg";
-import corazon from "../../../images/Vector-corazon.svg";
+import reciclaje from "../../images/Group__reciclaje.svg";
+import corazon from "../../images/Vector-corazon.svg";
 
 export default function Cards({ card, onLikeToggle }) {
     const { isLiked, name, link } = card;

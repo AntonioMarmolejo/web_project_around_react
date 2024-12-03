@@ -1,5 +1,5 @@
 import React from "react";
-import iconClose from "../../../images/Close-Icon.svg";
+import iconClose from "../../images/Close-Icon.svg";
 
 export default function Pupup({ onClose, title, children }) {
     return (

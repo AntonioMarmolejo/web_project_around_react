@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import pencil from "../images/Vector-pencil2.svg";
-import imagenPerfil from "../images/image.jpg";
-import imagenSuma from "../images/Vector-suma-agregar.svg";
-import iconClose from "../images/Close-Icon.svg";
-import Popup from "./componets/Popup/Popup";
-import EditProfile from "./componets/Form/EditProfile/EditProfile";
-import Avatar from "./componets/Form/EditAvatar/EditAvatar";
-import NewCard from "./componets/Form/NewCard/NewCard";
-import Cards from "./componets/Cards/Cards";
+import pencil from "../../images/Vector-pencil2.svg";
+import imagenPerfil from "../../images/image.jpg";
+import imagenSuma from "../../images/Vector-suma-agregar.svg";
+import iconClose from "../../images/Close-Icon.svg";
+import Popup from "../Popup/Popup";
+import EditProfile from "../EditProfile/EditProfile";
+import Avatar from "../Avatar/EditAvatar";
+import NewCard from "../NewCard/NewCard";
+import Cards from "../Cards/Cards";
 
 const cards = [
     {
