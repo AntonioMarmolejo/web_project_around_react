@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import pencil from "../../images/Vector-pencil2.svg";
 import imagenPerfil from "../../images/image.jpg";
 import imagenSuma from "../../images/Vector-suma-agregar.svg";
-
 import Popup from "../Popup/Popup";
 import EditProfile from "../EditProfile/EditProfile";
 import Avatar from "../Avatar/EditAvatar";
 import NewCard from "../NewCard/NewCard";
 import Cards from "../Cards/Cards";
 import ImagePopup from "../ImagePopup/ImagePopup";
+import DeleteCard from "../RemoveCard/RemoveCard";
+
 
 const cards = [
     {
@@ -45,6 +46,8 @@ export default function Main() {
             case "changeAvatar":
                 setPopup({ children: <Avatar /> });
                 break;
+            case "deleteCard":
+                setPopup({ children: <DeleteCard /> });
             default:
                 setPopup(null);
         }
@@ -57,6 +60,20 @@ export default function Main() {
         console.log(`Card ${cardId} like toggled`);
     }
 
+    function handleRecycleClick(card) {
+        setPopup({
+            title: "Eliminar Tarjeta",
+            children: (
+                <DeleteCard
+                    onConfirm={(e) => {
+                        e.preventDefault();
+                        console.log(`Tarjeta ${card.name} eliminada`);
+                        setPopup(null)
+                    }}
+                />
+            )
+        })
+    }
 
     return (
         <>
@@ -114,7 +131,8 @@ export default function Main() {
                         key={card._id}
                         card={card}
                         onLikeToggel={() => toggleLike(card._id)}
-                        onImagenClick={(card) => setSelectedImage(card)} //
+                        onImagenClick={(card) => setSelectedImage(card)}
+                        onRecycleClick={(card) => handleRecycleClick(card)}
                     />
 
                 ))}
