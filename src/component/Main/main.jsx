@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import pencil from "../../images/Vector-pencil2.svg";
 import imagenPerfil from "../../images/image.jpg";
 import imagenSuma from "../../images/Vector-suma-agregar.svg";
-import iconClose from "../../images/Close-Icon.svg";
+
 import Popup from "../Popup/Popup";
 import EditProfile from "../EditProfile/EditProfile";
 import Avatar from "../Avatar/EditAvatar";
 import NewCard from "../NewCard/NewCard";
 import Cards from "../Cards/Cards";
+import ImagePopup from "../ImagePopup/ImagePopup";
 
 const cards = [
     {
@@ -27,7 +28,6 @@ const cards = [
         createdAt: "2019-07-05T08:11:58.324Z",
     },
 ];
-console.log(cards);
 
 export default function Main() {
     const [popup, setPopup] = useState(null);
@@ -102,18 +102,23 @@ export default function Main() {
             </div>
 
             {selectedImage && (
-                <imagenPopup
+                <ImagePopup
                     card={selectedImage}
                     onClose={() => setSelectedImage(null)}
                 />
             )}
 
-            <ul className="cards__list">
+            <div className="cards">
                 {cards.map((card) => (
-                    <Cards key={card._id} card={card} onLikeToggel={() => toggleLike(card.id)} />
+                    <Cards
+                        key={card._id}
+                        card={card}
+                        onLikeToggel={() => toggleLike(card._id)}
+                        onImagenClick={(card) => setSelectedImage(card)} //
+                    />
 
                 ))}
-            </ul>
+            </div>
 
             {popup && (
                 <Popup onClose={() => setPopup(null)} title={popup.title}>

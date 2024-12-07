@@ -1,3 +1,5 @@
+import iconClose from "../../images/Close-Icon.svg";
+
 export default function ImagePopup({ card, onClose }) {
     if (!card) return null;
 
