@@ -1,6 +1,5 @@
 import reciclaje from "../../images/Group__reciclaje.svg";
 import corazon from "../../images/Vector-corazon.svg";
-import DeleteCard from "../RemoveCard/RemoveCard";
 
 export default function Cards({ card, onImagenClick, onRecycleClick, onLikeToggle }) {
     const { isLiked, name, link } = card;
