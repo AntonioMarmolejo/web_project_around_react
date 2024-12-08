@@ -77,8 +77,6 @@ El propósito principal de este proyecto es fortalecer el conocimiento en JavaSc
 
 ## ENLACES
 
-[VISITA EL SITIO] ("Around The US" )
-
 [TRIPLETEN] ("Tripleten" https://tripleten.com/es-ecu/)
 
 [Unsplash] ("Banco de imágenes gratis"https://unsplash.com/es)
