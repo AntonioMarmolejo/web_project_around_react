@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import pencil from "../../images/Vector-pencil2.svg";
 import imagenPerfil from "../../images/image.jpg";
 import imagenSuma from "../../images/Vector-suma-agregar.svg";
@@ -9,31 +9,26 @@ import NewCard from "../NewCard/NewCard";
 import Cards from "../Cards/Cards";
 import ImagePopup from "../ImagePopup/ImagePopup";
 import DeleteCard from "../RemoveCard/RemoveCard";
-
-
-const cards = [
-    {
-        isLiked: false,
-        _id: "5d1f0611d321eb4bdcd707dd",
-        name: "Yosemite Valley",
-        link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-        owner: "5d1f0611d321eb4bdcd707dd",
-        createdAt: "2019-07-05T08:10:57.741Z",
-    },
-    {
-        isLiked: false,
-        _id: "5d1f064ed321eb4bdcd707de",
-        name: "Lake Louise",
-        link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-        owner: "5d1f0611d321eb4bdcd707dd",
-        createdAt: "2019-07-05T08:11:58.324Z",
-    },
-];
+import { api } from "../../utils/Api";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 export default function Main() {
     const [popup, setPopup] = useState(null);
     const newCardPopup = { title: "", children: <NewCard /> };
     const [selectedImage, setSelectedImage] = useState(null);
+    const [cards, setCards] = useState([]);
+    const currentUser = useContext(CurrentUserContext);
+
+    useEffect(() => {
+        api.getInitialCard()
+            .then((data) => {
+                setCards(data);
+            })
+            .catch((error) => {
+                console.error('Error al obtener la tarjeta:', error);
+            });
+    }, []);
+
 
     function handleOpenPopup(type) {
         switch (type) {
@@ -89,13 +84,13 @@ export default function Main() {
                     </button>
                     <img
                         className="buttons__image"
-                        src={imagenPerfil}
+                        src={currentUser.avatar}
                         alt="Imagel de Jacques Cousteau"
                     />
                 </div>
 
                 <div className="buttons buttons__intro">
-                    <h2 className="buttons__intro buttons__name">Jacques Cousteau</h2>
+                    <h2 className="buttons__intro buttons__name">{currentUser.name}</h2>
 
                     <button
                         className="buttons__item buttons__item_index_profile"
@@ -103,7 +98,7 @@ export default function Main() {
                         <img src={pencil} alt="icono de pencil" />
                     </button>
 
-                    <p className="buttons__intro buttons__explorer">Explorer</p>
+                    <p className="buttons__intro buttons__explorer">{currentUser.about}</p>
                 </div>
 
                 <button
