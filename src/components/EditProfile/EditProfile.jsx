@@ -1,4 +1,23 @@
+import { useState, useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
+
+
 export default function EditProfile() {
+
+    const currentUser = useContext(CurrentUserContext);
+
+    const [name, setName] = useState(currentUser.name);
+    const [description, setDescription] = useState(currentUser.about);
+
+    function handleNameChange(event) {
+        setName(event.target.value);
+    }
+
+    function handleDescriptionChange(event) {
+        setDescription(event.target.value);
+    }
+
     return (
         <form className="form" noValidate>
             <h2 className="form__title">Editar Perfil</h2>
@@ -10,7 +29,8 @@ export default function EditProfile() {
                     id="user-name"
                     name="name"
                     placeholder="Nuevo usuario"
-                    defaultValue=""
+                    value={name}
+                    onChange={handleNameChange}
                     minLength="2"
                     maxLength="40"
                     required
@@ -25,7 +45,8 @@ export default function EditProfile() {
                     id="activity-input"
                     name="activity"
                     placeholder="Actividad"
-                    defaultValue=""
+                    value={description}
+                    onChange={handleDescriptionChange}
                     minLength="2"
                     maxLength="200"
                     required

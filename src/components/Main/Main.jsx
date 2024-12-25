@@ -54,7 +54,7 @@ export default function Main() {
     function toggleLike(cardId) {
         console.log(`Card ${cardId} like toggled`);
     }
-
+    //Función para contralar el boton, de reciclaje, al momento de darle click al ícono de basura
     function handleRecycleClick(card) {
         setPopup({
             title: "Eliminar Tarjeta",
@@ -68,6 +68,15 @@ export default function Main() {
                 />
             )
         })
+    }
+
+    //Función que se encarga de manejar la lógica de los likes y dislikes cuando se haga click en el botón
+    async function handleCardLike(card) {
+        const isLiked = card.isLiked;
+
+        await api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+            setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+        }).catch((error) => console.log(error))
     }
 
     return (
@@ -125,6 +134,7 @@ export default function Main() {
                     <Cards
                         key={card._id}
                         card={card}
+                        onCardLike={handleCardLike}
                         onLikeToggel={() => toggleLike(card._id)}
                         onImagenClick={(card) => setSelectedImage(card)}
                         onRecycleClick={(card) => handleRecycleClick(card)}
