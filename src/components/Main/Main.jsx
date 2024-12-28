@@ -22,6 +22,7 @@ export default function Main() {
     useEffect(() => {
         api.getInitialCard()
             .then((data) => {
+                console.log(data)
                 setCards(data);
             })
             .catch((error) => {
@@ -72,10 +73,13 @@ export default function Main() {
 
     //Función que se encarga de manejar la lógica de los likes y dislikes cuando se haga click en el botón
     async function handleCardLike(card) {
-        const isLiked = card.isLiked;
+        const isLiked = card.likes.some((user) => user._id === currentUser._id);
+        const promise = isLiked ? api.deleteCardLink(card._id) : api.linkCard(card._id);
 
-        await api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-            setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+        await promise.then((newCard) => {
+            setCards((state) => state.map((currentCard) =>
+                currentCard._id === card._id ? newCard : currentCard
+            ));
         }).catch((error) => console.log(error))
     }
 
@@ -135,7 +139,7 @@ export default function Main() {
                         key={card._id}
                         card={card}
                         onCardLike={handleCardLike}
-                        onLikeToggel={() => toggleLike(card._id)}
+                        // onLikeToggle={() => toggleLike(card._id)}
                         onImagenClick={(card) => setSelectedImage(card)}
                         onRecycleClick={(card) => handleRecycleClick(card)}
                     />

@@ -29,7 +29,7 @@ export default function EditProfile() {
                     id="user-name"
                     name="name"
                     placeholder="Nuevo usuario"
-                    value={name}
+                    value={setName}
                     onChange={handleNameChange}
                     minLength="2"
                     maxLength="40"
@@ -45,7 +45,7 @@ export default function EditProfile() {
                     id="activity-input"
                     name="activity"
                     placeholder="Actividad"
-                    value={description}
+                    value={setDescription}
                     onChange={handleDescriptionChange}
                     minLength="2"
                     maxLength="200"

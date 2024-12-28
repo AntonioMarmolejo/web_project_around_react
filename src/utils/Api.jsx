@@ -44,7 +44,9 @@ class Api {
                 method: "GET",
                 headers: this.getHeaders()
             }
+
         )
+
             .then(this._getCheckResponse) //Convierte los datos recividos en formato JSON
             .catch((err) => {
                 console.log('Error:', err) //Si la respuesta es incorrecta imprimirá un mensaje de error

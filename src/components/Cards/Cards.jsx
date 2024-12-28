@@ -1,10 +1,17 @@
 import reciclaje from "../../images/Group__reciclaje.svg";
 import corazon from "../../images/Vector-corazon.svg";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-export default function Cards({ card, onImagenClick, onRecycleClick, onLikeToggle }) {
+
+export default function Cards({ card, onImagenClick, onRecycleClick, onCardLike }) {
     const { name, link } = card;
-    const [isLiked, setisLiked] = useState(false)
+    const currentUser = useContext(CurrentUserContext);
+    const [isLiked, setisLiked] = useState(card.likes.some((user) => user._id === currentUser._id));
+    useEffect(() => {
+        setisLiked(card.likes.some((user) => user._id === currentUser._id));
+    }, [card.likes])
+
 
     const cardLikeButtonClassName = `cards__element_itemImage ${isLiked ? 'cards__like_active' : ''}`
 
@@ -37,7 +44,7 @@ export default function Cards({ card, onImagenClick, onRecycleClick, onLikeToggl
                         onClick={handleLikeClick}
                         alt="incono de me gusta"
                     />
-                    <h3 className="countlike">{card.likes?.lenght || 0}</h3>
+                    <h3 className="countlike">{card.likes.length}</h3>
                 </div>
             </div>
         </div>
