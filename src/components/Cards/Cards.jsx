@@ -20,13 +20,17 @@ export default function Cards({ card, onImagenClick, onRecycleClick, onCardLike 
         onCardLike(card);
     }
 
+    const handleDeleteClick = () => {
+        onCardDelete(card);
+    }
+
     return (
         <div className="cards__element" id="cards__element_trastId">
             <div className="cards__element_trast">
                 <img
                     src={reciclaje}
                     alt="Icono de reciclaje"
-                    onClick={() => onRecycleClick && onRecycleClick(card)}
+                    onClick={handleDeleteClick}
                 />
             </div>
             <img
@@ -44,7 +48,7 @@ export default function Cards({ card, onImagenClick, onRecycleClick, onCardLike 
                         onClick={handleLikeClick}
                         alt="incono de me gusta"
                     />
-                    <h3 className="countlike">{card.likes.length}</h3>
+                    <h3 className="countlike">{card.likes.length || 0}</h3>
                 </div>
             </div>
         </div>

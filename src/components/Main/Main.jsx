@@ -83,6 +83,14 @@ export default function Main() {
         }).catch((error) => console.log(error))
     }
 
+    async function handleCardDelete(card) {
+        await api.deleteCard(card._id)
+            .then(() => {
+                setCards((state) => state.filter((currentCard) => currentCard._id !== card._id))
+            })
+            .catch((error) => console.log(error))
+    }
+
     return (
         <>
             <div className="buttons">
@@ -139,6 +147,7 @@ export default function Main() {
                         key={card._id}
                         card={card}
                         onCardLike={handleCardLike}
+                        onCardDelete={handleCardDelete}
                         // onLikeToggle={() => toggleLike(card._id)}
                         onImagenClick={(card) => setSelectedImage(card)}
                         onRecycleClick={(card) => handleRecycleClick(card)}
