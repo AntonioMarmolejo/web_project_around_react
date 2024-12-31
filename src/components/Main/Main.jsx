@@ -12,17 +12,16 @@ import DeleteCard from "../RemoveCard/RemoveCard";
 import { api } from "../../utils/Api";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-export default function Main() {
+export default function Main({ onOpenPopup, onClosePopup, isPopupOpen }) {
     const [popup, setPopup] = useState(null);
     const newCardPopup = { title: "", children: <NewCard /> };
     const [selectedImage, setSelectedImage] = useState(null);
     const [cards, setCards] = useState([]);
-    const currentUser = useContext(CurrentUserContext);
+    const { currentUser } = useContext(CurrentUserContext);
 
     useEffect(() => {
         api.getInitialCard()
             .then((data) => {
-                console.log(data)
                 setCards(data);
             })
             .catch((error) => {
@@ -113,11 +112,11 @@ export default function Main() {
                 <div className="buttons buttons__intro">
                     <h2 className="buttons__intro buttons__name">{currentUser.name}</h2>
 
-                    <button
-                        className="buttons__item buttons__item_index_profile"
-                        onClick={() => handleOpenPopup("editProfile")}>
-                        <img src={pencil} alt="icono de pencil" />
-                    </button>
+                    <button className="buttons__item buttons__item_index_profile" onClick={onClosePopup}>Editat Perfil
+                        <img src={pencil} alt="icono de pencil" /></button>
+                    {isPopupOpen && (
+                        <EditProfile onClose={onClosePopup} />
+                    )}
 
                     <p className="buttons__intro buttons__explorer">{currentUser.about}</p>
                 </div>
@@ -148,7 +147,6 @@ export default function Main() {
                         card={card}
                         onCardLike={handleCardLike}
                         onCardDelete={handleCardDelete}
-                        // onLikeToggle={() => toggleLike(card._id)}
                         onImagenClick={(card) => setSelectedImage(card)}
                         onRecycleClick={(card) => handleRecycleClick(card)}
                     />

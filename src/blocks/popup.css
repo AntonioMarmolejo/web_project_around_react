@@ -168,7 +168,7 @@ input::-ms-input-placeholder {
     margin-bottom: 5px;
 }
 
-.button_inactive {
+/* .button_inactive {
     color: #b8b8b8;
     background-color: #ededed;
     pointer-events: none;
@@ -176,7 +176,7 @@ input::-ms-input-placeholder {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
+} */
 
 .popup__close-buttons {
     position: absolute;

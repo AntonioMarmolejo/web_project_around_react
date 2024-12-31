@@ -14,7 +14,6 @@ export default function Pupup({ onClose, title, children }) {
                     />
                 </div>
                 {children}
-                {/* {title && <h3 className="popup__title">{title}</h3>} {children} */}
             </div>
         </div>
     );

@@ -4,22 +4,32 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 
 export default function EditProfile() {
-
-    const currentUser = useContext(CurrentUserContext);
-
+    const { currentUser, handleUpdateUser } = useContext(CurrentUserContext);
     const [name, setName] = useState(currentUser.name);
     const [description, setDescription] = useState(currentUser.about);
 
+
     function handleNameChange(event) {
-        setName(event.target.value);
+        setName(event.target.value); //Actuliza name cada vez que cambia la entrada
     }
 
     function handleDescriptionChange(event) {
-        setDescription(event.target.value);
+        setDescription(event.target.value); //Actuliza la descripción cuando cambia la entrada
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault() //Evita el comportamiento predeterminado del nvegador
+        handleUpdateUser({ name, about: description }) //Actuliza la información del usuario
+        onClose();
+    };
+
+    function handleClosePopup() {
+        setName(currentUser.name); //Restaura el nombre original
+        setDescription(currentUser.about); //Restaura la descripción original
     }
 
     return (
-        <form className="form" noValidate>
+        <form className="form" noValidate onSubmit={handleSubmit} onClick={handleClosePopup}>
             <h2 className="form__title">Editar Perfil</h2>
 
             <label className="form__label" htmlFor="user-name">
@@ -29,7 +39,7 @@ export default function EditProfile() {
                     id="user-name"
                     name="name"
                     placeholder="Nuevo usuario"
-                    value={setName}
+                    value={name}
                     onChange={handleNameChange}
                     minLength="2"
                     maxLength="40"
@@ -45,7 +55,7 @@ export default function EditProfile() {
                     id="activity-input"
                     name="activity"
                     placeholder="Actividad"
-                    value={setDescription}
+                    value={description}
                     onChange={handleDescriptionChange}
                     minLength="2"
                     maxLength="200"

@@ -6,7 +6,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 export default function Cards({ card, onImagenClick, onRecycleClick, onCardLike }) {
     const { name, link } = card;
-    const currentUser = useContext(CurrentUserContext);
+    const { currentUser } = useContext(CurrentUserContext);
     const [isLiked, setisLiked] = useState(card.likes.some((user) => user._id === currentUser._id));
     useEffect(() => {
         setisLiked(card.likes.some((user) => user._id === currentUser._id));
