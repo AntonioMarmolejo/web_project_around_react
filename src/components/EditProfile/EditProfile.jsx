@@ -1,35 +1,38 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 
 
-export default function EditProfile() {
+export default function EditProfile({ onClose }) {
     const { currentUser, handleUpdateUser } = useContext(CurrentUserContext);
-    const [name, setName] = useState(currentUser.name);
-    const [description, setDescription] = useState(currentUser.about);
+    const [name, setName] = useState(currentUser.name || "");
+    const [description, setDescription] = useState(currentUser.about || "");
 
+    useEffect(() => {
+        setName(""); //Inicializa el nombre con el nombre actual del usuario
+        setDescription(""); //Inicializa la descripción con la descripción actual del usuario
+    }, [currentUser, onClose]); //Ejecuta el useEffect cuando currentUser cambia
 
-    function handleNameChange(event) {
-        setName(event.target.value); //Actuliza name cada vez que cambia la entrada
+    function handleNameChange(evt) {
+        setName(evt.target.value); //Actuliza name cada vez que cambia la entrada
     }
 
-    function handleDescriptionChange(event) {
-        setDescription(event.target.value); //Actuliza la descripción cuando cambia la entrada
+    function handleDescriptionChange(evt) {
+        setDescription(evt.target.value); //Actuliza la descripción cuando cambia la entrada
     }
 
-    function handleSubmit(event) {
-        event.preventDefault() //Evita el comportamiento predeterminado del nvegador
-        handleUpdateUser({ name, about: description }) //Actuliza la información del usuario
-        onClose();
-    };
-
-    function handleClosePopup() {
-        setName(currentUser.name); //Restaura el nombre original
-        setDescription(currentUser.about); //Restaura la descripción original
+    async function handleSubmit(evt) {
+        evt.preventDefault() //Evita el comportamiento predeterminado del nvegador
+        try {
+            await handleUpdateUser({ name, about: description }); //Llama a la función de actualización del usuario
+            onClose(); //Cierra el popup
+        } catch (error) {
+            console.error('Error al actualizar el perfil', error);
+        };
     }
 
     return (
-        <form className="form" noValidate onSubmit={handleSubmit} onClick={handleClosePopup}>
+        <form className="form" noValidate onSubmit={handleSubmit}>
             <h2 className="form__title">Editar Perfil</h2>
 
             <label className="form__label" htmlFor="user-name">

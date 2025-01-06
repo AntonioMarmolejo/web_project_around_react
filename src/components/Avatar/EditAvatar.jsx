@@ -1,6 +1,16 @@
-export default function EditAvatar() {
+import { useRef } from "react";
+
+export default function EditAvatar(onUpdateAvatar) {
+    const avatarInputRef = useRef(null);
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        onUpdateAvatar({
+            avatar: avatarInputRef.current.value, //Obtiene el valor de entrada usando ref
+        })
+    }
+
     return (
-        <form className="form" noValidate>
+        <form className="form" noValidate onSubmit={handleSubmit}>
             <h2 className="form__title">Editar Avatar</h2>
 
             <label className="form__label" htmlFor="avatar-input">
@@ -10,6 +20,7 @@ export default function EditAvatar() {
                     id="avatar-input"
                     name="avatar"
                     placeholder="Url de la nueva foto"
+                    ref={avatarInputRef} //Usa ref para referenciar el input
                     defaultValue=""
                     minLength="2"
                     maxLength="100"

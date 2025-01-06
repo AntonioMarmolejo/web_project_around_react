@@ -4,41 +4,52 @@ import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import { api } from "../utils/Api";
-import Popup from "./Popup/Popup";
 
 export default function App() {
     const [currentUser, setCurrentUser] = useState({});
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [popupType, setPopupType] = useState(null);
+
+    const handleOpenPopup = (type) => {
+        setIsPopupOpen(true);
+        setPopupType(type);
+    };
+
+    const handleClosePopup = () => {
+        setIsPopupOpen(false);
+        setPopupType(null);
+    };
+
 
     useEffect(() => {
         (async () => {
-            await api.getUserInfo().then((data) => {
+            try {
+                const data = await api.getUserInfo();
                 setCurrentUser(data);
-            });
+            } catch (error) {
+                console.error("Error al obtener la información del usuario:", error);
+            }
         })();
     }, []);
 
 
-
-    const handleOpenPopup = () => {
-        setIsPopupOpen(true);
-    }
-    const handleClosePopup = () => {
-        setIsPopupOpen(false);
-    }
-
-    const handleUpdateUser = (data) => {
-        (async () => {
-            await api
-                .updateUser(data.name, data.about)
-                .then((newData) => {
-                    setCurrentUser(newData);
-                    handleClosePopup();
-                })
-                .catch((error) => console.error(error));
-        })();
+    const handleUpdateUser = async (data) => {
+        try {
+            const newDate = await api.updateUser(data.name, data.about);
+            setCurrentUser(newDate); //Actualizar los datos del perifl de usuario en currentUser
+        } catch (error) {
+            console.error('Error al actualizar el usuario', error)
+        }
     };
 
+    // const handleUpdaterAvatar = async ({ avatar }) => {
+    //     try {
+    //         const updaterUser = await api.updateUserPhoto(avatar);
+    //         setCurrentUser(updaterUser); //actualizar el avatar en currenUser
+    //     } catch (error) {
+    //         console.error('Error al actualizar el avatar', error)
+    //     }
+    // }
 
     return (
         <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
@@ -49,9 +60,9 @@ export default function App() {
                         onOpenPopup={handleOpenPopup}
                         onClosePopup={handleClosePopup}
                         isPopupOpen={isPopupOpen}
+                        popupType={popupType}
                     />
                     <Footer />
-                    <Popup isOpen={isPopupOpen} onClose={handleClosePopup} />
                 </main>
             </div>
         </CurrentUserContext.Provider>
