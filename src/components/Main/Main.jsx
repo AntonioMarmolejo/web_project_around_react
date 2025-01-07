@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import pencil from "../../images/Vector-pencil2.svg";
-import imagenPerfil from "../../images/image.jpg";
 import imagenSuma from "../../images/Vector-suma-agregar.svg";
 import Popup from "../Popup/Popup";
 import EditProfile from "../EditProfile/EditProfile";
@@ -20,10 +19,13 @@ export default function Main({
     cards,
     onCardLike,
     onCardDelete,
+    onRecycleClick,
     onAddPlaceSubmit,
-    onUpdateUser }) {
+    onUpdateUser,
+}) {
     const [selectedImage, setSelectedImage] = useState(null);
     const { currentUser } = useContext(CurrentUserContext);
+
 
     return (
         <>
@@ -59,9 +61,8 @@ export default function Main({
                         key={card._id}
                         card={card}
                         onCardLike={onCardLike}
-                        onCardDelete={onCardDelete}
+                        onRecycleClick={() => onRecycleClick(card)}
                         onImagenClick={setSelectedImage}
-
                     />
                 ))}
             </div>
@@ -79,7 +80,12 @@ export default function Main({
                             onClose={onClosePopup} />)
                     }
                     {popupType === "changeAvatar" && <Avatar onUpdateAvatar={onUpdateAvatar} onClose={onClosePopup} />}
-                    {popupType === "deleteCard" && <DeleteCard onClose={onClosePopup} />}
+                    {popupType === "deleteCard" && (
+                        <DeleteCard
+                            onConfirm={onCardDelete}
+                            onClose={onClosePopup}
+                        />
+                    )}
                 </Popup>
             )}
         </>

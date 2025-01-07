@@ -10,17 +10,18 @@ export default function App() {
     const [cards, setCards] = useState([]);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [popupType, setPopupType] = useState(null);
-    const [popupAvatar, setPopupAvatar] = useState(false);
+    const [selectedCardToDelete, setSelectedCardToDelete] = useState(null);
+
 
     useEffect(() => {
         api.getUserInfo().then(setCurrentUser).catch(console.error);
-
         api.getInitialCard().then(setCards).catch(console.error);
     }, []);
 
     //Función para contralar el boton, de reciclaje, al momento de darle click al ícono de basura
     function handleRecycleClick(card) {
-        onOpenPopup("deleteCard");
+        setSelectedCardToDelete(card);
+        handleOpenPopup("deleteCard");
     }
 
     //Lógica de los likes y dislikes de cada tarjeta
@@ -40,17 +41,18 @@ export default function App() {
         try {
             const newCard = await api.addCard(data.name, data.link);
             setCards([newCard, ...cards]); // Añadir la nueva tarjeta al inicio
-            setIsPopupOpen(false);
-            setPopupType(null);
+            handleClosePopup();
         } catch (error) {
             console.error("Error al agregar la nueva tarjeta:", error);
         }
     };
 
-    const handleCardDelete = async (card) => {
+    const handleCardDelete = async (evt) => {
+        evt.preventDefault();
         try {
-            await api.deleteCard(card._id);
-            setCards((prevCards) => prevCards.filter((c) => c._id !== card._id));
+            await api.deleteCard(selectedCardToDelete._id);
+            setCards((prevCards) => prevCards.filter((c) => c._id !== selectedCardToDelete._id));
+            handleClosePopup();
         } catch (error) {
             console.error("Error al eliminar la tarjeta:", error);
         }
@@ -60,10 +62,10 @@ export default function App() {
         setIsPopupOpen(true);
         setPopupType(type);
     };
-
     const handleClosePopup = () => {
         setIsPopupOpen(false);
         setPopupType(null);
+        setSelectedCardToDelete(null);
     };
 
     useEffect(() => {
@@ -95,8 +97,7 @@ export default function App() {
         try {
             const updateUserAvatar = await api.updateUserPhoto(data.avatar); //Actulizar la imagen del ávatar
             setCurrentUser(updateUserAvatar);
-            setIsPopupOpen(false);
-            setPopupType(null);
+            handleClosePopup();
         } catch (error) {
             console.error("Error al Actualizar el Avatar: " + error);
         }
@@ -112,13 +113,12 @@ export default function App() {
                         onCardLike={handleCardLike}
                         onCardDelete={handleCardDelete}
                         onAddPlaceSubmit={handleAddPlaceSubmit}
+                        onRecycleClick={handleRecycleClick}
                         onOpenPopup={(type) => {
-                            setIsPopupOpen(true);
-                            setPopupType(type);
+                            handleOpenPopup(type);
                         }}
                         onClosePopup={() => {
-                            setIsPopupOpen(false);
-                            setPopupType(null);
+                            handleClosePopup();
                         }}
                         isPopupOpen={isPopupOpen}
                         popupType={popupType}

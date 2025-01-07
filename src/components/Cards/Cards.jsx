@@ -18,11 +18,11 @@ export default function Cards({ card, onImagenClick, onRecycleClick, onCardLike 
     const handleLikeClick = () => {
         setisLiked(!isLiked);
         onCardLike(card);
-    }
+    };
 
     const handleDeleteClick = () => {
-        onCardDelete(card);
-    }
+        onRecycleClick(card);
+    };
 
     return (
         <div className="cards__element" id="cards__element_trastId">

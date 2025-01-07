@@ -1,3 +1,4 @@
+import React from "react";
 export default function DeleteCard({ onConfirm }) {
     return (
         <form className="form" onSubmit={onConfirm} noValidate>
