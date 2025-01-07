@@ -3,7 +3,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 
 
-export default function EditProfile({ onClose }) {
+export default function EditProfile({ onUpdateUser, onClose }) {
     const { currentUser, handleUpdateUser } = useContext(CurrentUserContext);
     const [name, setName] = useState(currentUser.name || "");
     const [description, setDescription] = useState(currentUser.about || "");
@@ -24,7 +24,7 @@ export default function EditProfile({ onClose }) {
     async function handleSubmit(evt) {
         evt.preventDefault() //Evita el comportamiento predeterminado del nvegador
         try {
-            await handleUpdateUser({ name, about: description }); //Llama a la función de actualización del usuario
+            await onUpdateUser({ name, about: description }); //Llama a la función de actualización del usuario
             onClose(); //Cierra el popup
         } catch (error) {
             console.error('Error al actualizar el perfil', error);

@@ -1,12 +1,13 @@
 import { useRef } from "react";
 
-export default function EditAvatar(onUpdateAvatar) {
+export default function EditAvatar({ onUpdateAvatar }) {
     const avatarInputRef = useRef(null);
+
     function handleSubmit(evt) {
         evt.preventDefault();
         onUpdateAvatar({
-            avatar: avatarInputRef.current.value, //Obtiene el valor de entrada usando ref
-        })
+            avatar: avatarInputRef.current.value, //Actualiza el avatar cuando cambia la entrada
+        });
     }
 
     return (
