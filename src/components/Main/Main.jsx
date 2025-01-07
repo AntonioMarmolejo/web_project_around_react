@@ -5,7 +5,7 @@ import Popup from "./components/Popup/Popup";
 import EditProfile from "./components/Popup/EditProfile/EditProfile";
 import Avatar from "./components/Popup/EditAvatar/EditAvatar";
 import NewCard from "./components/Popup/NewCard/NewCard";
-import Cards from "../Cards/Cards";
+import Cards from "./Cards/Cards";
 import ImagePopup from "./components/Popup/ImagePopup/ImagePopup";
 import DeleteCard from "./components/Popup/RemoveCard/RemoveCard";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
