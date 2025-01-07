@@ -8,7 +8,7 @@ import NewCard from "../NewCard/NewCard";
 import Cards from "../Cards/Cards";
 import ImagePopup from "../ImagePopup/ImagePopup";
 import DeleteCard from "../RemoveCard/RemoveCard";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 export default function Main({
     onOpenPopup,

@@ -1,7 +1,7 @@
 import reciclaje from "../../images/Group__reciclaje.svg";
 import corazon from "../../images/Vector-corazon.svg";
 import { useState, useEffect, useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 
 export default function Cards({ card, onImagenClick, onRecycleClick, onCardLike }) {
