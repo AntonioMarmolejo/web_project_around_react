@@ -3,11 +3,11 @@ import pencil from "../images/Vector-pencil2.svg";
 import imagenSuma from "../images/Vector-suma-agregar.svg";
 import Popup from "../components/Main/components/popup/Popup";
 import EditProfile from "../components/EditProfile/EditProfile";
-import Avatar from "../components/EditAvatar/EditAvatar";
-import NewCard from "../components/NewCard/NewCard";
+import Avatar from "../components/Main/components/popup/EditAvatar/EditAvatar";
+import NewCard from "../components/Main/components/popup/NewCard/NewCard";
 import Cards from "../components/Main/components/card/Card";
-import ImagePopup from "../components/ImagePopup/ImagePopup";
-import DeleteCard from "../components/RemoveCard/RemoveCard";
+import ImagePopup from "../components/Main/components/popup/ImagePopup/ImagePopup";
+import DeleteCard from "../components/Main/components/popup/RemoveCard/RemoveCard";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 export default function Main({
