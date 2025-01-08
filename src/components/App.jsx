@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Header from "../Main/components/Header/Header";
+import Header from "./Header/Header";
 import Main from "../Main/Main";
-import Footer from "../Main/components/Footer/Footer";
+import Footer from "./Footer/Footer";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import { api } from "../utils/Api";
 
