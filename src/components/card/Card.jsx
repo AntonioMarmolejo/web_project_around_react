@@ -1,5 +1,5 @@
-import reciclaje from "../../../images/Group__reciclaje.svg";
-import corazon from "../../../images/Vector-corazon.svg";
+import reciclaje from "../../images/Group__reciclaje.svg";
+import corazon from "../../images/Vector-corazon.svg";
 import { useState, useEffect, useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
