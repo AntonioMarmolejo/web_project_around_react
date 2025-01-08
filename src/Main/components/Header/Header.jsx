@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../../images/Vector-logo.svg";
-import line from "../../images/Line.png";
+import logo from "../../../images/Vector-logo.svg";
+import line from "../../../images/Line.png";
 export default function Header() {
     return (
         <header className="header">
