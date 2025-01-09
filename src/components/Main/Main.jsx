@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import pencil from "../../images/Vector-pencil2.svg";
 import imagenSuma from "../../images/Vector-suma-agregar.svg";
-import Popup from "./components/popup/Popup";
-import EditProfile from "./components/popup/EditProfile/EditProfile";
-import Avatar from "./components/popup/EditAvatar/EditAvatar";
-import NewCard from "./components/popup/NewCard/NewCard";
-import Cards from "./components/card/Card";
-import ImagePopup from "./components/popup/ImagePopup/ImagePopup";
-import DeleteCard from "./components/popup/RemoveCard/RemoveCard";
+import Popup from "./components/Popup/Popup";
+import EditProfile from "./components/Popup/EditProfile/EditProfile";
+import Avatar from "./components/Popup/EditAvatar/EditAvatar";
+import NewCard from "./components/Popup/NewCard/NewCard";
+import Cards from "./components/Card/Card";
+import ImagePopup from "./components/Popup/ImagePopup/ImagePopup";
+import DeleteCard from "./components/Popup/RemoveCard/RemoveCard";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 export default function Main({
