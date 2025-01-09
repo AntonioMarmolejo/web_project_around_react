@@ -5,7 +5,7 @@ import Popup from "./components/popup/Popup";
 import EditProfile from "./components/Popup/EditProfile/EditProfile";
 import Avatar from "./components/Popup/EditAvatar/EditAvatar";
 import NewCard from "./components/Popup/NewCard/NewCard";
-import Cards from "./components/Card/Card";
+import Card from "./components/Card/Card";
 import ImagePopup from "./components/Popup/ImagePopup/ImagePopup";
 import DeleteCard from "./components/Popup/RemoveCard/RemoveCard";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -57,7 +57,7 @@ export default function Main({
 
             <div className="cards">
                 {cards.map((card) => (
-                    <Cards
+                    <Card
                         key={card._id}
                         card={card}
                         onCardLike={onCardLike}
