@@ -10,7 +10,7 @@ export default function Cards({ card, onImagenClick, onRecycleClick, onCardLike 
     const [isLiked, setisLiked] = useState(card.likes.some((user) => user._id === currentUser._id));
     useEffect(() => {
         setisLiked(card.likes.some((user) => user._id === currentUser._id));
-    }, [card.likes])
+    }, [card.likes]);
 
 
     const cardLikeButtonClassName = `cards__element_itemImage ${isLiked ? 'cards__like_active' : ''}`
