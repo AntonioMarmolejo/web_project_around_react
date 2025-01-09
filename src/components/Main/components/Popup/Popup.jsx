@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import iconClose from "../../../../images/Close-Icon.svg";
 
-export default function Pupup({ isOpen, onClose, title, children }) {
+export default function Popup({ isOpen, onClose, title, children }) {
 
     useEffect(() => {
         if (!isOpen) return;

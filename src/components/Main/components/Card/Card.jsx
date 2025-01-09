@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import CurrentUserContext from "../../../../contexts/CurrentUserContext";
 
 
-export default function Cards({ card, onImagenClick, onRecycleClick, onCardLike }) {
+export default function Card({ card, onImagenClick, onRecycleClick, onCardLike }) {
     const { name, link } = card;
     const { currentUser } = useContext(CurrentUserContext);
     const [isLiked, setisLiked] = useState(card.likes.some((user) => user._id === currentUser._id));
