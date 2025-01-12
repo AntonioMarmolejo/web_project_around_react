@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import pencil from "../../images/Vector-pencil2.svg";
 import imagenSuma from "../../images/Vector-suma-agregar.svg";
-import Popup from "./components/popup/Popup";
+import Popup from "./components/Popup/Popup";
 import EditProfile from "./components/Popup/EditProfile/EditProfile";
 import Avatar from "./components/Popup/EditAvatar/EditAvatar";
 import NewCard from "./components/Popup/NewCard/NewCard";
